@@ -1,6 +1,7 @@
 package sg.edu.np.mad.madpractical2;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,6 +28,21 @@ public class MainActivity extends AppCompatActivity {
         tvName.setText(user.name);
         tvDescription.setText(user.description);
         btnFollow.setText("Follow");
+
+        btnFollow.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if (user.followed==false){
+                    btnFollow.setText("Unfollow");
+                    user.followed=true;
+                }
+                else if (user.followed==true){
+                    btnFollow.setText("Follow");
+                    user.followed=false;
+                }
+
+            }
+        });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
